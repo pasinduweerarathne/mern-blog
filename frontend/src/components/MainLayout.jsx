@@ -5,9 +5,11 @@ import Header from "./Header";
 
 const MainLayout = () => {
   return (
-    <div className="font-opensans">
+    <div className="font-opensans flex flex-col min-h-screen px-4">
       <Header />
-      <Outlet />
+      <div className="grow">
+        <Outlet />
+      </div>
       <Footer />
     </div>
   );
