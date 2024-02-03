@@ -2,6 +2,7 @@ import images from "@/constants/images";
 import { Link } from "react-router-dom";
 import BreadCrumbs from "@/components/BreadCrumbs";
 import SuggestedPosts from "./SuggestedPosts";
+import CommentsContainer from "../../components/comments/CommentsContainer";
 
 const breadCrumbsData = [
   { name: "Home", link: "/" },
@@ -17,19 +18,19 @@ const postData = [
     createdAt: "2023-01-28T15:35:53.607+0000",
   },
   {
-    _id: "1",
+    _id: "2",
     image: images.post1,
     title: "Help children get better education",
     createdAt: "2023-01-28T15:35:53.607+0000",
   },
   {
-    _id: "1",
+    _id: "3",
     image: images.post1,
     title: "Help children get better education",
     createdAt: "2023-01-28T15:35:53.607+0000",
   },
   {
-    _id: "1",
+    _id: "4",
     image: images.post1,
     title: "Help children get better education",
     createdAt: "2023-01-28T15:35:53.607+0000",
@@ -72,12 +73,6 @@ const ArticleDetails = () => {
             <Editor content={data?.body} editable={false} />
           )} */}
         </div>
-        {/* <CommentsContainer
-          comments={data?.comments}
-          className="mt-10"
-          logginedUserId={userState?.userInfo?._id}
-          postSlug={slug}
-        /> */}
         <div>
           Lorem ipsum dolor sit amet consectetur adipisicing elit. Non illo,
           quis quod suscipit ipsam sed nostrum autem rem soluta reprehenderit
@@ -87,6 +82,7 @@ const ArticleDetails = () => {
           unde porro excepturi voluptate sapiente distinctio sit eum quis quod,
           earum fugiat?
         </div>
+        <CommentsContainer />
       </article>
       <div className="w-full md:w-[40%] mt-[52px]">
         <SuggestedPosts
