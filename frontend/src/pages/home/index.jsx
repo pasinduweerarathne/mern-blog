@@ -4,7 +4,7 @@ import HeroSection from "./HeroSection";
 
 const Home = () => {
   return (
-    <div className="max-w-[1280px] mx-auto">
+    <div>
       <HeroSection />
       <Articles />
       <CTA />
