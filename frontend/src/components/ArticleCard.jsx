@@ -5,14 +5,10 @@ import { Link } from "react-router-dom";
 const ArticleCard = () => {
   return (
     <div
-      className={`rounded-xl overflow-hidden shadow-[rgba(7,_65,_210,_0.1)_0px_9px_30px] w-[300px]`}
+      className={`rounded-xl overflow-hidden shadow-[rgba(7,_65,_210,_0.1)_0px_9px_30px] max-w-[350px]`}
     >
       <Link to={``}>
-        <img
-          src={images.post1}
-          alt="title"
-          className="w-full object-cover object-center h-auto md:h-52 lg:h-48 xl:h-60"
-        />
+        <img src={images.post1} alt="title" className="w-full" />
       </Link>
       <div className="p-5">
         <Link to={``}>

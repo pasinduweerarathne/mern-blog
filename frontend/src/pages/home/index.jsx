@@ -4,11 +4,13 @@ import HeroSection from "./HeroSection";
 
 const Home = () => {
   return (
-    <div>
-      <HeroSection />
-      <Articles />
+    <>
+      <div className="px-4">
+        <HeroSection />
+        <Articles />
+      </div>
       <CTA />
-    </div>
+    </>
   );
 };
 

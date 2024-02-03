@@ -5,7 +5,7 @@ import Header from "./Header";
 
 const MainLayout = () => {
   return (
-    <div className="font-opensans flex flex-col min-h-screen px-4 max-w-[1280px] mx-auto">
+    <div className="font-opensans flex flex-col min-h-screen max-w-[1280px] mx-auto">
       <Header />
       <div className="grow">
         <Outlet />

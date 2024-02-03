@@ -4,7 +4,7 @@ import ArticleCard from "@/components/ArticleCard";
 const Articles = () => {
   return (
     <section className="">
-      <div className="mt-10 gap-y-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center pb-10">
+      <div className="mt-10 gap-10 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 place-items-center pb-10">
         <ArticleCard />
         <ArticleCard />
         <ArticleCard />
