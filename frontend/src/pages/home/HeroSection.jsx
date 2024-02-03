@@ -1,9 +1,9 @@
 import images from "../../constants/images";
 import { FiSearch } from "react-icons/fi";
 
-const Home = () => {
+const HeroSection = () => {
   return (
-    <section className="flex flex-col-reverse lg:flex-row justify-between max-w-[1280px] mx-auto">
+    <section className="flex flex-col-reverse lg:flex-row justify-between">
       <div className="mt-10 w-full">
         <h1 className="font-roboto text-3xl lg:text-5xl font-bold text-dark-soft text-center lg:text-left">
           Read the most interesting articles
@@ -52,4 +52,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default HeroSection;
