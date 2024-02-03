@@ -7,7 +7,7 @@ const ArticleCard = () => {
     <div
       className={`rounded-xl overflow-hidden shadow-[rgba(7,_65,_210,_0.1)_0px_9px_30px] max-w-[350px]`}
     >
-      <Link to={``}>
+      <Link to={`/blog/1234`}>
         <img src={images.post1} alt="title" className="w-full" />
       </Link>
       <div className="p-5">

@@ -75,7 +75,7 @@ const Header = () => {
   const [isMobileNavOpen, setisMobileNavOpen] = useState(false);
 
   return (
-    <header className="flex justify-between items-center py-4 px-4">
+    <header className="flex justify-between items-center py-4 px-4 z-10">
       <div>Logo</div>
 
       <div className="md:hidden">
