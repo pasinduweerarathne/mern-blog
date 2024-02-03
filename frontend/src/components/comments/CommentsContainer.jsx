@@ -1,10 +1,11 @@
 import CommentForm from "./CommentForm";
 import { getCommentsData } from "../../data/comments";
 import { useEffect, useState } from "react";
+import Comment from "./Comment";
 
 const CommentsContainer = () => {
   const [comments, setComments] = useState([]);
-  console.log(comments);
+  const mainComment = comments.filter((comment) => comment.parent === null);
 
   useEffect(() => {
     (async () => {
@@ -33,6 +34,11 @@ const CommentsContainer = () => {
   return (
     <div>
       <CommentForm btnLabel={"Send"} formSubmitHanlder={formSubmitHanlder} />
+      <div className="space-y-4 mt-8">
+        {mainComment.map((comment, index) => (
+          <Comment key={index} comment={comment} />
+        ))}
+      </div>
     </div>
   );
 };
