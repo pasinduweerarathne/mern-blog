@@ -3,6 +3,7 @@ import { Link } from "react-router-dom";
 import BreadCrumbs from "@/components/BreadCrumbs";
 import SuggestedPosts from "./SuggestedPosts";
 import CommentsContainer from "../../components/comments/CommentsContainer";
+import SocialShareButtons from "../../components/SocialShareButtons";
 
 const breadCrumbsData = [
   { name: "Home", link: "/" },
@@ -94,10 +95,10 @@ const ArticleDetails = () => {
           <h2 className="font-roboto font-medium text-dark-hard mb-4 md:text-xl">
             Share on:
           </h2>
-          {/* <SocialShareButtons
-            url={encodeURI(window.location.href)}
-            title={encodeURIComponent(data?.title)}
-          /> */}
+          <SocialShareButtons
+          // url={encodeURI(window.location.href)}
+          // title={encodeURIComponent(data?.title)}
+          />
         </div>
       </div>
     </section>
