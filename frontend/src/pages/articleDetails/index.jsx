@@ -82,7 +82,7 @@ const ArticleDetails = () => {
           unde porro excepturi voluptate sapiente distinctio sit eum quis quod,
           earum fugiat?
         </div>
-        <CommentsContainer />
+        <CommentsContainer loggedUserId={"a"} />
       </article>
       <div className="w-full md:w-[40%] mt-[52px]">
         <SuggestedPosts

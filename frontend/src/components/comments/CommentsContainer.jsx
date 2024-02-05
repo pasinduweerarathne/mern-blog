@@ -1,11 +1,14 @@
+/* eslint-disable react/prop-types */
 import CommentForm from "./CommentForm";
 import { getCommentsData } from "../../data/comments";
 import { useEffect, useState } from "react";
 import Comment from "./Comment";
 
-const CommentsContainer = () => {
+const CommentsContainer = ({ loggedUserId }) => {
   const [comments, setComments] = useState([]);
   const mainComment = comments.filter((comment) => comment.parent === null);
+  const [affectedComment, setAffectedComment] = useState(null);
+  console.log(comments)
 
   useEffect(() => {
     (async () => {
@@ -14,29 +17,60 @@ const CommentsContainer = () => {
     })();
   }, []);
 
-  const formSubmitHanlder = (value, parent = null, replyOnUser = null) => {
+  const addCommnetHanlder = (value, parent = null, replyOnUser = null) => {
     const newComment = {
-      _id: comments.length + 1,
+      _id: Math.random().toString(),
       user: {
         _id: "a",
         name: "Mohammad Rezaii",
       },
-      desc: { value },
+      desc: value,
       post: "1",
       parent: parent,
       replyOnUser: replyOnUser,
-      createdAt: "2022-12-31T17:22:05.092+0000",
+      createdAt: new Date().toISOString()
     };
 
     setComments([...comments, newComment]);
+    setAffectedComment(null)
   };
+
+  const updateCommentHandler = (value, commentId) => {
+    const updatedCommnet = comments.map((comment) => {
+      if (comment._id === commentId) {
+        return { ...comment, desc: value }
+      }
+      return comment
+    })
+    setComments(updatedCommnet)
+    setAffectedComment(null)
+  }
+
+  const deleteCommentHandler = (commentId) => {
+    setComments(comments.filter(comment => comment._id !== commentId))
+  }
+
+  const getRepliesHandler = (commentId) => {
+    return comments.filter(comment => comment.parent === commentId).sort((a, b) => new Date(a.createdAt).getTime() - new Date(b.createdAt).getTime())
+  }
+
 
   return (
     <div>
-      <CommentForm btnLabel={"Send"} formSubmitHanlder={formSubmitHanlder} />
+      <CommentForm btnLabel={"Send"} formSubmitHanlder={addCommnetHanlder} />
       <div className="space-y-4 mt-8">
-        {mainComment.map((comment, index) => (
-          <Comment key={index} comment={comment} />
+        {mainComment.map((comment) => (
+          <Comment
+            key={comment._id}
+            comment={comment}
+            loggedUserId={loggedUserId}
+            affectedComment={affectedComment}
+            setAffectedComment={setAffectedComment}
+            addComment={addCommnetHanlder}
+            updateComment={updateCommentHandler}
+            deleteComment={deleteCommentHandler}
+            replies={getRepliesHandler(comment._id)}
+          />
         ))}
       </div>
     </div>
