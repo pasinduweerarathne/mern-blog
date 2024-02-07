@@ -2,6 +2,8 @@ import { Link } from "react-router-dom";
 import { MdKeyboardArrowDown } from "react-icons/md";
 import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import { useState } from "react";
+import { useDispatch, useSelector } from "react-redux";
+import { logout } from "../store/actions/user";
 
 const navLinks = [
   { name: "Home", type: "link", path: "/" },
@@ -18,67 +20,18 @@ const navLinks = [
   { name: "FAQ", type: "link", path: "/faq" },
 ];
 
-const NavItems = () => {
-  const [dropdownOpen, setDropdownOpen] = useState(false);
-
-  return (
-    <div className="flex flex-col items-center justify-center h-full gap-10 md:flex-row md:justify-end">
-      {navLinks.map((link, index) =>
-        link.type === "link" ? (
-          <Link
-            to={link.path}
-            className="cursor-pointer text-white relative group font-semibold duration-300 hover:text-blue-500 md:text-dark-hard"
-            key={index}
-          >
-            {link.name}
-            <span className="absolute bg-blue-500 h-[2px] bottom-0 left-0 w-0 group-hover:w-full duration-500"></span>
-          </Link>
-        ) : (
-          <div key={index}>
-            <div
-              className="flex justify-center cursor-pointer text-white font-semibold md:text-dark-hard"
-              onClick={() => setDropdownOpen(!dropdownOpen)}
-            >
-              {link.name} <MdKeyboardArrowDown className="text-2xl" />
-            </div>
-            <div
-              className={`${
-                dropdownOpen ? "block" : "hidden"
-              } flex flex-col md:absolute`}
-            >
-              <div className="mt-4 flex flex-col items-center bg-dark-soft rounded-lg overflow-hidden md:bg-transparent md:shadow-lg">
-                {link.items.map((link, index) => (
-                  <Link
-                    className="cursor-pointer px-6 py-2 w-full hover:bg-dark-hard hover:text-white group"
-                    key={index}
-                    to={link.path}
-                  >
-                    <div className="relative text-center font-semibold duration-500">
-                      {link.name}
-                      <span className="absolute bg-white h-[3px] bottom-0 left-0 w-0 group-hover:w-full duration-500"></span>
-                    </div>
-                  </Link>
-                ))}
-              </div>
-            </div>
-          </div>
-        )
-      )}
-      <button className="border-2 border-blue-500 rounded-full px-6 py-2 font-semibold text-blue-500 transition-all duration-500 hover:bg-blue-500 hover:text-white">
-        Sign In
-      </button>
-    </div>
-  );
-};
-
 const Header = () => {
+  const dispatch = useDispatch()
   const [isMobileNavOpen, setisMobileNavOpen] = useState(false);
+  const [isDropdownOpen, setIsDropdownOpen] = useState(false);
+  const [isProfileOpen, setIsProfileOpen] = useState(false);
+  const { userInfo } = useSelector(state => state.user)
 
   return (
-    <header className="flex justify-between items-center py-4 px-4 z-10">
+    <header className="sticky top-0 flex justify-between items-center py-4 px-4 z-10 bg-white shadow-md">
       <div>Logo</div>
 
-      <div className="md:hidden">
+      <div className="md:hidden z-10">
         {isMobileNavOpen ? (
           <AiOutlineClose
             className="text-2xl cursor-pointer"
@@ -92,14 +45,55 @@ const Header = () => {
         )}
       </div>
 
-      <div
-        className={`${
-          isMobileNavOpen ? "left-0" : "left-full"
-        } fixed mt-[56px] top-0 bottom-0 w-full bg-dark-hard transition-all duration-300 md:mt-0 md:static md:bg-transparent`}
-      >
-        <NavItems />
+      <div className={`${isMobileNavOpen ? "left-0" : "left-full"} flex flex-col gap-10 fixed top-0 bottom-0 right-0 w-full justify-center items-center bg-dark-hard transition-all duration-500 mt-[56px] md:flex-row md:static md:mt-0 md:bg-transparent md:justify-end`}>
+        {navLinks.map((link, index) => (
+          <div key={index}>
+            {
+              link.type === "link" ?
+                <Link to={link.path} className="relative group text-white font-semibold md:text-dark-hard"> {link.name}
+                  <span className="bg-blue-500 absolute bottom-0 left-0 w-0 h-0.5 transition-all duration-500 group-hover:w-full"></span>
+                </Link>
+                :
+                <div className={"md:relative group"}>
+                  <div onClick={() => setIsDropdownOpen(!isDropdownOpen)} className="cursor-pointer text-white font-semibold flex items-center md:text-dark-hard justify-center">
+                    {link.name}
+                    <MdKeyboardArrowDown className="text-2xl" />
+                  </div>
+                  <div className={`${isDropdownOpen ? "block" : "hidden"} md:absolute md:-left-7 md:hidden md:group-hover:block`}>
+                    <div className="flex flex-col rounded-lg overflow-hidden border mt-2 shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] bg-dark-hard w-[110px] md:border-none">
+                      {link.items.map((link, index) => (
+                        <Link key={index} className="font-semibold px-2 py-2 text-white text-center transition-all duration-300 hover:bg-white hover:text-dark-hard">
+                          {link.name}
+                        </Link>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+            }
+          </div>
+        ))}
+        {userInfo ?
+          <div className={"md:relative group"}>
+            <div onClick={() => setIsProfileOpen(!isProfileOpen)} className="cursor-pointer text-white font-semibold flex items-center md:text-dark-hard justify-center">
+              Profile
+              <MdKeyboardArrowDown className="text-2xl" />
+            </div>
+            <div className={`${isProfileOpen ? "block" : "hidden"} md:absolute md:-left-7 md:hidden md:group-hover:block`}>
+              <div className="flex flex-col rounded-lg overflow-hidden border mt-2 shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] bg-dark-hard w-[110px] md:border-none">
+                <button
+                  className="font-semibold px-2 py-2 text-white text-center transition-all duration-300 hover:bg-white hover:text-dark-hard"
+                  onClick={() => dispatch(logout())}
+                >
+                  Logout
+                </button>
+              </div>
+            </div>
+          </div>
+          :
+          <Link to={"/login"} className="border-2 border-blue-500 px-6 py-2 rounded-full transition-all duration-500 font-semibold text-white hover:text-white hover:bg-blue-500 md:text-dark-hard">Sing In</Link>
+        }
       </div>
-    </header>
+    </header >
   );
 };
 

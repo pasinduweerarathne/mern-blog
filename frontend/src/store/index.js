@@ -5,7 +5,11 @@ const userInfoFromStorage = localStorage.getItem("account")
   ? JSON.parse(localStorage.getItem("account"))
   : null;
 
-const initialState = { user: userInfoFromStorage };
+const initialState = {
+  user: {
+    userInfo: userInfoFromStorage,
+  },
+};
 
 export const store = configureStore({
   reducer: {
