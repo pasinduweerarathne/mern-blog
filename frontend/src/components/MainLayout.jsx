@@ -7,7 +7,7 @@ const MainLayout = () => {
   return (
     <div className="font-opensans flex flex-col max-w-[1280px] mx-auto">
       <Header />
-      <div className="flex-grow min-h-screen">
+      <div className="grow min-h-[calc(100vh-56px)]">
         <Outlet />
       </div>
       <Footer />
