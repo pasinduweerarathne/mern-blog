@@ -102,6 +102,7 @@ export const updateProfile = async (req, res, next) => {
       email: updatedUserProfile.email,
       verified: updatedUserProfile.verificationCode,
       admin: updatedUserProfile.admin,
+      token: await user.generateJWT(),
     });
   } catch (error) {
     next(error);
@@ -135,6 +136,7 @@ export const updateProfilePicture = async (req, res, next) => {
             email: updatedUser.email,
             verified: updatedUser.verified,
             admin: updatedUser.admin,
+            token: await user.generateJWT(),
           });
         } else {
           let filename;
@@ -150,6 +152,7 @@ export const updateProfilePicture = async (req, res, next) => {
             email: updatedUser.email,
             verified: updatedUser.verified,
             admin: updatedUser.admin,
+            token: await user.generateJWT(),
           });
         }
       }

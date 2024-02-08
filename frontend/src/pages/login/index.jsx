@@ -2,7 +2,7 @@
 import { Link, useNavigate } from "react-router-dom"
 import { useForm } from "react-hook-form"
 import { useMutation } from "@tanstack/react-query"
-import { signin } from "../../services"
+import { signin } from "../../services/users"
 import toast from "react-hot-toast"
 import { useDispatch, useSelector } from 'react-redux'
 import { userActions } from "../../store/reducers/userReducer"

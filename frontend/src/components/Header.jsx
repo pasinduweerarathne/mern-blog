@@ -51,7 +51,7 @@ const Header = () => {
             {
               link.type === "link" ?
                 <Link to={link.path} className="relative group text-white font-semibold md:text-dark-hard"> {link.name}
-                  <span className="bg-blue-500 absolute bottom-0 left-0 w-0 h-0.5 transition-all duration-500 group-hover:w-full"></span>
+                  <span className="bg-blue-500 absolute bottom-0 left-0 w-0 h-0.5 transition-all duration-300 group-hover:w-full"></span>
                 </Link>
                 :
                 <div className={"md:relative group"}>
@@ -59,10 +59,10 @@ const Header = () => {
                     {link.name}
                     <MdKeyboardArrowDown className="text-2xl" />
                   </div>
-                  <div className={`${isDropdownOpen ? "block" : "hidden"} md:absolute md:-left-7 md:hidden md:group-hover:block`}>
+                  <div className={`${isDropdownOpen ? "block" : "hidden"} md:absolute md:-left-6 md:hidden md:group-hover:block`}>
                     <div className="flex flex-col rounded-lg overflow-hidden border mt-2 shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] bg-dark-hard w-[110px] md:border-none">
                       {link.items.map((link, index) => (
-                        <Link key={index} className="font-semibold px-2 py-2 text-white text-center transition-all duration-300 hover:bg-white hover:text-dark-hard">
+                        <Link key={index} className="font-semibold px-2 py-2 text-white text-center transition-all duration-300 hover:bg-dark-light">
                           {link.name}
                         </Link>
                       ))}
@@ -75,13 +75,22 @@ const Header = () => {
         {userInfo ?
           <div className={"md:relative group"}>
             <div onClick={() => setIsProfileOpen(!isProfileOpen)} className="cursor-pointer text-white font-semibold flex items-center md:text-dark-hard justify-center">
-              Profile
-              <MdKeyboardArrowDown className="text-2xl" />
+              <div className="border-2 border-blue-500 px-6 py-2 rounded-full transition-all duration-300 font-semibold text-white flex items-center hover:text-white hover:bg-blue-500 md:text-dark-hard">
+                Account
+                <MdKeyboardArrowDown className="text-2xl" />
+              </div>
             </div>
-            <div className={`${isProfileOpen ? "block" : "hidden"} md:absolute md:-left-7 md:hidden md:group-hover:block`}>
+
+            <div className={`${isProfileOpen ? "block" : "hidden"} md:absolute md:left-3.5 md:hidden md:group-hover:block flex justify-center`}>
               <div className="flex flex-col rounded-lg overflow-hidden border mt-2 shadow-[4.0px_8.0px_8.0px_rgba(0,0,0,0.38)] bg-dark-hard w-[110px] md:border-none">
+                <Link
+                  to={"/profile"}
+                  className="font-semibold px-2 py-2 text-white text-center transition-all duration-300 hover:bg-dark-light"
+                >
+                  Profile
+                </Link>
                 <button
-                  className="font-semibold px-2 py-2 text-white text-center transition-all duration-300 hover:bg-white hover:text-dark-hard"
+                  className="font-semibold px-2 py-2 text-white text-center transition-all duration-300 hover:bg-dark-light"
                   onClick={() => dispatch(logout())}
                 >
                   Logout
@@ -90,7 +99,7 @@ const Header = () => {
             </div>
           </div>
           :
-          <Link to={"/login"} className="border-2 border-blue-500 px-6 py-2 rounded-full transition-all duration-500 font-semibold text-white hover:text-white hover:bg-blue-500 md:text-dark-hard">Sing In</Link>
+          <Link to={"/login"} className="border-2 border-blue-500 px-6 py-2 rounded-full transition-all duration-300 font-semibold text-white hover:text-white hover:bg-blue-500 md:text-dark-hard">Sing In</Link>
         }
       </div>
     </header >
