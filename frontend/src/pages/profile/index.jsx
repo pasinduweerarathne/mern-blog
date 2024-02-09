@@ -40,7 +40,7 @@ const Profile = () => {
         mode: 'onChange'
     })
 
-    const { mutate, isPending } = useMutation({
+    const { mutate, isPending: updateProfileIsLoading } = useMutation({
         mutationFn: ({ name, email, password }) => {
             return updateProfile({
                 token: userInfo.token,
@@ -71,8 +71,10 @@ const Profile = () => {
     }
 
     return (
-        <section className="py-10 h-full flex flex-col max-w-sm mx-auto justify-center">
-            <ProfilePicture avatar={profileData?.avatar} />
+        <section className="relative py-10 h-full flex flex-col max-w-sm mx-auto justify-center">
+            <div className="pb-5">
+                <ProfilePicture avatar={profileData?.avatar} />
+            </div>
             <form onSubmit={handleSubmit(submitHandler)}>
                 <div className="flex flex-col mb-6 w-full">
                     <label
@@ -154,10 +156,10 @@ const Profile = () => {
                 </div>
                 <button
                     type="submit"
-                    disabled={!isValid || profileIsLoading}
+                    disabled={!isValid || profileIsLoading || updateProfileIsLoading}
                     className="bg-primary text-white font-bold text-lg py-4 px-8 w-full rounded-lg mb-6 disabled:opacity-70 disabled:cursor-not-allowed"
                 >
-                    Submit
+                    Update
                 </button>
             </form>
         </section>

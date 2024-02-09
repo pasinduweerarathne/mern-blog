@@ -136,7 +136,7 @@ export const updateProfilePicture = async (req, res, next) => {
             email: updatedUser.email,
             verified: updatedUser.verified,
             admin: updatedUser.admin,
-            token: await user.generateJWT(),
+            token: await updatedUser.generateJWT(),
           });
         } else {
           let filename;
@@ -152,7 +152,7 @@ export const updateProfilePicture = async (req, res, next) => {
             email: updatedUser.email,
             verified: updatedUser.verified,
             admin: updatedUser.admin,
-            token: await user.generateJWT(),
+            token: await updatedUser.generateJWT(),
           });
         }
       }
