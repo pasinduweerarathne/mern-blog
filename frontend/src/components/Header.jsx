@@ -4,6 +4,7 @@ import { AiOutlineClose, AiOutlineMenu } from "react-icons/ai";
 import { useState } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { logout } from "../store/actions/user";
+import images from "../constants/images";
 
 const navLinks = [
   { name: "Home", type: "link", path: "/" },
@@ -29,7 +30,9 @@ const Header = () => {
 
   return (
     <header className="sticky top-0 flex justify-between items-center py-4 px-4 z-10 bg-white shadow-md">
-      <div>Logo</div>
+      <Link to="/">
+        <img src={images.logo} alt="logo" className="w-[180px] h-full" />
+      </Link>
 
       <div className="md:hidden z-10">
         {isMobileNavOpen ? (

@@ -17,7 +17,7 @@ const Profile = () => {
     const {
         data: profileData,
         isLoading: profileIsLoading,
-        error: profileError
+        // error: profileError
     } = useQuery({
         queryFn: () => {
             return getUserProfile({ token: userInfo.token })
@@ -139,7 +139,7 @@ const Profile = () => {
                         htmlFor="password"
                         className="text-[#5a7184] font-semibold block"
                     >
-                        New Password (optional)
+                        New Password (Optional)
                     </label>
                     <input
                         type="password"

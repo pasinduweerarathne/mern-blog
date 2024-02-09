@@ -6,6 +6,7 @@ import {
 } from "react-icons/ai";
 import { FaFacebook } from "react-icons/fa";
 import { BsTelegram } from "react-icons/bs";
+import images from "../constants/images";
 
 const Footer = () => {
   return (
@@ -88,7 +89,7 @@ const Footer = () => {
             alt="logo"
             className="brightness-0 invert mx-auto md:mx-0"
           /> */}
-          <div>Logo</div>
+          <img src={images.logo} alt="logo" className="w-[200px] h-auto" />
           <p className="text-sm text-dark-light text-center mt-4 md:text-left md:text-base lg:text-sm">
             Build a modern and creative website with crealand
           </p>

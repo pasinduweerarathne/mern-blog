@@ -52,6 +52,7 @@ const ProfilePicture = ({ avatar }) => {
 
     return (
         <>
+            {/* Remove profile picture comfirm modal */}
             {userInfo.avatar && isModalOpen && (
                 <ConfirmModal
                     confirmHandler={handleDeleteImage}
@@ -69,8 +70,8 @@ const ProfilePicture = ({ avatar }) => {
                     />,
                     document.getElementById("portal"))
             )}
-            <div className="w-full flex items-center gap-x-4">
-                <div className='relative w-20 h-20 rounded-full outline outline-offset-2 outline-1 outline-primary overflow-hidden'>
+            <div className="flex items-center gap-3">
+                <div className='relative w-36 h-36 rounded-full outline outline-offset-2 outline-1 outline-primary overflow-hidden'>
                     <label htmlFor="profilePicture" className='cursor-pointer absolute inset-0 rounded-full bg-transparent'>
                         {avatar ? (
                             <img
@@ -88,11 +89,11 @@ const ProfilePicture = ({ avatar }) => {
                 </div>
                 <button
                     type="button"
-                    className='border border-red-500 rounded-lg px-4 py-2 text-red-500 font-semibold disabled:cursor-not-allowed disabled:opacity-70'
+                    className='border border-red-500 rounded-lg px-4 py-2 text-red-500 font-semibold text-sm disabled:cursor-not-allowed disabled:opacity-70'
                     onClick={() => setIsModalOpen(true)}
                     disabled={!userInfo?.avatar || isPending}
                 >
-                    Delete
+                    Delete Profile
                 </button>
             </div>
         </>
