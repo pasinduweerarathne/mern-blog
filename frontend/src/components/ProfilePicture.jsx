@@ -1,7 +1,7 @@
 /* eslint-disable react/prop-types */
 import { HiOutlineCamera } from 'react-icons/hi'
 import CropEasy from './cropImage/CropEasy'
-import { useState } from 'react';
+import { useEffect, useState } from 'react';
 import { createPortal } from "react-dom"
 import { useMutation, useQueryClient } from '@tanstack/react-query';
 import { updateProfilePicture } from '../services/users';
@@ -53,7 +53,7 @@ const ProfilePicture = ({ avatar }) => {
     return (
         <>
             {/* Remove profile picture comfirm modal */}
-            {userInfo.avatar && isModalOpen && (
+            {userInfo?.avatar && isModalOpen && (
                 <ConfirmModal
                     confirmHandler={handleDeleteImage}
                     setIsModalOpen={setIsModalOpen}

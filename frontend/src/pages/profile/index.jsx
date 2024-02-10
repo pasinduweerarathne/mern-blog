@@ -14,6 +14,12 @@ const Profile = () => {
     const queryClient = useQueryClient()
     const { userInfo } = useSelector(state => state.user)
 
+    useEffect(() => {
+        if (!userInfo) {
+            navigate("/")
+        }
+    }, [userInfo, navigate]);
+
     const {
         data: profileData,
         isLoading: profileIsLoading,
@@ -58,12 +64,6 @@ const Profile = () => {
             console.log(error)
         }
     })
-
-    useEffect(() => {
-        if (!userInfo) {
-            navigate("/")
-        }
-    }, [userInfo, navigate]);
 
     const submitHandler = (data) => {
         const { name, email, password } = data
